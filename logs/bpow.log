@@ -1,0 +1,20 @@
+2021-02-06 16:24:02 +0100 - INFO - bpow_client.py@run:253
+
+
+=======BoomPow (bPow)========
+
+- Payouts to ban_13wtiq9d73ceakixsj6q34ykkzmj5a8wqrwc7te1ydhprgyc5ttpi8qs1c8n
+- Doing any work
+- Server at wss://client:client@bpow.banano.cc/mqtt
+- Work server at 127.0.0.1:7000, asynchronous requests disabled
+- TO EXIT: Press CTRL+C
+
+=============================
+
+
+2021-02-06 16:24:03 +0100 - INFO - bpow_client.py@setup:187
+Checking for server availability...
+2021-02-06 16:24:03 +0100 - INFO - bpow_client.py@setup:189
+Server online!
+2021-02-06 16:24:06 +0100 - CRITICAL - bpow_client.py@setup:207
+Worker not available at http://127.0.0.1:7000

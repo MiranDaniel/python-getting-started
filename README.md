@@ -1,45 +1,56 @@
-# Python: Getting Started
+# BoomPow Client
 
-A barebones Django app, which can easily be deployed to Heroku.
+These steps will guide you on how to setup a new work client. The nano-work-server provided is based on [nanocurrency/nano-work-server](https://github.com/nanocurrency/nano-work-server). Only this work server is fully supported.
 
-This application supports the [Getting Started with Python on Heroku](https://devcenter.heroku.com/articles/getting-started-with-python) article - check it out.
+## Setup
 
-## Running Locally
+### Requirements
 
-Make sure you have Python 3.7 [installed locally](http://install.python-guide.org). To push to Heroku, you'll need to install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli), as well as [Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup).
+1. [Python](https://www.python.org/) 3.6.7 or higher.
 
-```sh
-$ git clone https://github.com/heroku/python-getting-started.git
-$ cd python-getting-started
+### Installation
 
-$ python3 -m venv getting-started
-$ pip install -r requirements.txt
+- Download the [latest version](https://github.com/bbedward/boompow/releases) and extract it.
+- On Linux, open a terminal and cd to the bpow-client directory.
+- On Windows, shift + right-click in the bpow-client directory and click  "Open Powershell window here".
+- On MacOS, in Finder right click on the bpow-client directory and click "New Terminal at bpow-client"
+- `pip3 install --user -r requirements.txt`
 
-$ createdb python_getting_started
+## Running
 
-$ python manage.py migrate
-$ python manage.py collectstatic
+You need to find out what your GPU vendor/device numbers are if you're going to be using a GPU. Usually it will be either `0:0`, `0:1`, or `1:0`, depending on how many you have (including integrated graphics).
 
-$ heroku local
-```
+### Linux
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+1. Install required library
+  ```bash
+  sudo apt install ocl-icd-libopencl1
+  ```
+2. Check `./bin/linux/nano-work-server --help` for information on how to select your GPU (or CPU).
+3. Run the work server:
+  ```bash
+  ./bin/linux/nano-work-server --gpu 0:0 -l 127.0.0.1:7000
+  ```
+4. Check the client configuration options with `python3 bpow_client.py --help`
+5. Run the client:
+  ```bash
+  python3 bpow_client.py --payout YOUR_BANANO_ADDRESS --work {ondemand,precache,any}
+  ```
 
-## Deploying to Heroku
+### Windows
 
-```sh
-$ heroku create
-$ git push heroku main
+1. Edit the file `run_windows.bat` with your desired configuration (including the work-server GPU config).
+2. Double-click the same file, which should eventually open two terminals. You must leave them running in the foreground. You can minimize but not close them (sorry!).
 
-$ heroku run python manage.py migrate
-$ heroku open
-```
-or
+### MacOS
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
-## Documentation
-
-For more information about using Python on Heroku, see these Dev Center articles:
-
-- [Python on Heroku](https://devcenter.heroku.com/categories/python)
+1. Check `./bin/macos/nano-work-server --help` for information on how to select your GPU (or CPU).
+2. Run the work server:
+   ```bash
+   ./bin/macos/nano-work-server --gpu 0:0 -l 127.0.0.1:7000
+   ```
+3. Press ⌘+T to open a new tab
+4. Run the client:
+   ```bash
+   python3 bpow_client.py --payout YOUR_BANANO_ADDRESS --work {ondemand,precache,any}
+   ```
